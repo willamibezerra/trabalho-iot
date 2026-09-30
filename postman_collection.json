@@ -1,0 +1,58 @@
+{
+  "info": {
+    "name": "API REST Flask - IoT",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "base_url", "value": "http://192.168.1.4:5000" }
+  ],
+  "item": [
+    {
+      "name": "GET / (status da API)",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/"
+      }
+    },
+    {
+      "name": "GET /usuarios",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/usuarios"
+      }
+    },
+    {
+      "name": "POST /usuarios (sucesso - 201)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nome\": \"João\",\n  \"email\": \"joao@email.com\"\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": "{{base_url}}/usuarios"
+      }
+    },
+    {
+      "name": "POST /usuarios (incompleto - 400)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nome\": \"João\"\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": "{{base_url}}/usuarios"
+      }
+    },
+    {
+      "name": "GET /produtos (rota inexistente - 404)",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/produtos"
+      }
+    }
+  ]
+}
